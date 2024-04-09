@@ -1,19 +1,36 @@
 const Location = require('../models/locationModel');
+const Device = require('../models/deviceModel');
 
-// POST method to create a new location
-async function createLocation(req, res) {
+const createLocation = async (req, res) => {
+  const { name, address, phone, devices } = req.body;
+
   try {
-    const { name, address, phone } = req.body;
-    const newLocation = new Location({ name, address, phone });
+    if (!name || !address || !phone || !devices || !Array.isArray(devices)) {
+      return res.status(400).json({ message: "Fill all the required fields" });
+    }
+
+    const existingDevices = await Device.find({ _id: { $in: devices } });
+    if (existingDevices.length !== devices.length) {
+      return res.status(404).json({ message: "One or more devices not found" });
+    }
+
+    const newLocation = new Location({
+      name,
+      address,
+      phone,
+      devices: existingDevices.map(device => device._id),
+    });
     const savedLocation = await newLocation.save();
+
     res.status(201).json(savedLocation);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({ message: "Server Error" });
   }
-}
+};
 
-// GET method to get all locations
+
+
 async function getAllLocations(req, res) {
   try {
     const locations = await Location.find();
@@ -24,7 +41,6 @@ async function getAllLocations(req, res) {
   }
 }
 
-// GET method to get a specific location by ID
 async function getLocationById(req, res) {
   try {
     const location = await Location.findById(req.params.id);
@@ -38,10 +54,21 @@ async function getLocationById(req, res) {
   }
 }
 
-// PUT method to update a location by ID
 async function updateLocationById(req, res) {
   try {
+    const { devices } = req.body;
+
+    if (devices && !Array.isArray(devices)) {
+      return res.status(400).json({ message: "Devices should be entered as array" });
+    }
+    if (devices) {
+      const existingDevices = await Device.find({ _id: { $in: devices } });
+      if (existingDevices.length !== devices.length) {
+        return res.status(404).json({ message: "One or more devices not found" });
+      }
+    }
     const updatedLocation = await Location.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
     if (!updatedLocation) {
       return res.status(404).json({ message: 'Location not found' });
     }
@@ -52,7 +79,6 @@ async function updateLocationById(req, res) {
   }
 }
 
-// DELETE method to delete a location by ID
 async function deleteLocationById(req, res) {
   try {
     const deletedLocation = await Location.findByIdAndDelete(req.params.id);
