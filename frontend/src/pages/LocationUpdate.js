@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../css/addLocation.css';
+import { useParams } from 'react-router-dom';
+import '../css/locationUpdate.css';
 
-function AddLocation() {
+function EditLocation() {
+  const { id } = useParams();
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
@@ -18,27 +20,48 @@ function AddLocation() {
       .catch(error => {
         console.error('Error fetching devices:', error);
       });
-  }, []);
+
+    // Fetch location details from backend when component mounts
+    axios.get(`http://localhost:8080/locations/${id}`)
+      .then(response => {
+        const location = response.data;
+        setName(location.name);
+        setAddress(location.address);
+        setPhone(location.phone);
+        setDevices(location.devices);
+      })
+      .catch(error => {
+        console.error('Error fetching location details:', error);
+      });
+  }, [id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8080/locations', {
+      await axios.put(`http://localhost:8080/locations/${id}`, {
         name,
         address,
         phone,
         devices
       });
-      // Redirect to location list page after successful creation
-      window.location.href = '/Locations';
+      window.location.href = '/locations';
     } catch (error) {
-      console.error('Error creating location:', error);
+      console.error('Error updating location:', error);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:8080/locations/${id}`);
+      window.location.href = '/locations';
+    } catch (error) {
+      console.error('Error deleting location:', error);
     }
   };
 
   return (
-    <div className="add-location-container">
-      <h1 className="update-device-title">Add Location</h1>
+    <div className="edit-location-container">
+      <h1>Edit Location</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Name:</label>
@@ -53,17 +76,18 @@ function AddLocation() {
           <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} required />
         </div>
         <div>
-          <label>Devices: **(press & hold control to select multiple)</label>
+          <label>Devices:</label>
           <select multiple value={devices} onChange={(e) => setDevices(Array.from(e.target.selectedOptions, option => option.value))} required>
             {availableDevices.map(device => (
               <option key={device._id} value={device._id}>{device.serialNumber}</option>
             ))}
           </select>
         </div>
-        <button type="submit">Add Location</button>
+        <button type="submit">Update Location</button>
+        <button type="button" onClick={handleDelete} className="delete-button">Delete Location</button>
       </form>
     </div>
   );
 }
 
-export default AddLocation;
+export default EditLocation;

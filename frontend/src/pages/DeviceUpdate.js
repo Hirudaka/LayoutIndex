@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import '../css/updateDevice.css';
 
 function UpdateDevice() {
   const { id } = useParams();
@@ -52,8 +53,9 @@ function UpdateDevice() {
 
   return (
     <div>
-      <h1>Update Device</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 className="update-device-title">Update Device</h1>
+
+      <form onSubmit={handleSubmit} className="update-device-form">
         <div>
           <label>Serial Number:</label>
           <input type="text" value={serialNumber} onChange={(e) => setSerialNumber(e.target.value)} required />
@@ -79,12 +81,14 @@ function UpdateDevice() {
             <option value="inactive">Inactive</option>
           </select>
         </div>
-        <button type="submit">Update Device</button>
-        
+        <div className="button-container">
+          <button type="submit">Update Device</button>
+          <button className="delete-button" onClick={handleDelete}>Delete Device</button>
+        </div>
       </form>
-      <button onClick={handleDelete}>Delete Device</button>
     </div>
   );
+  
 }
 
 export default UpdateDevice;

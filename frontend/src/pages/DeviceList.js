@@ -18,10 +18,15 @@ function DeviceList() {
 
   return (
     <div>
-      <h1>Device List</h1>
-      <Link to="/addDevice">
-        <button>Add Device</button>
-      </Link>
+      <h1 className="update-device-title">Device Collection</h1>
+      <div className="button-container">
+        <Link to="/addDevice">
+          <button className="action-button">Add Device</button>
+        </Link>
+        <Link to="/locations">
+          <button className="action-button">Locations</button>
+        </Link>
+      </div>
       <table>
         <thead>
           <tr>
@@ -38,16 +43,16 @@ function DeviceList() {
             <tr key={device._id}>
               <td>{device.serialNumber}</td>
               <td>{device.type}</td>
-              <td><img src={device.image} alt={device.type} style={{ width: '100px', height: '100px' }} /></td>
+              <td><img src={device.image} alt={device.type} className="device-image" /></td>
               <td>{device.status}</td>
               <td>
                 <Link to={`/detailDevice/${device._id}`}>
-                  <button>View Device</button>
+                  <button className="action-button">View Device</button>
                 </Link>
               </td>
               <td>
                 <Link to={`/updateDevice/${device._id}`}>
-                  <button>Edit Device</button>
+                  <button className="action-button">Edit Device</button>
                 </Link>
               </td>
             </tr>

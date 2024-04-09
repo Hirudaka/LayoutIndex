@@ -1,0 +1,40 @@
+.add-device-form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .update-device-title {
+    text-align: center; /* Center align the text */
+    font-size: 24px; /* Adjust font size */
+    color: #333; /* Set text color */
+    margin-bottom: 20px; /* Add some bottom margin for spacing */
+    text-transform: uppercase; /* Convert text to uppercase */
+  }
+  
+  .add-device-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .add-device-form input,
+  .add-device-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .add-device-form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .add-device-form button:hover {
+    background-color: #0056b3;
+  }
+  

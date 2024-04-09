@@ -1,0 +1,70 @@
+.update-device-title {
+  text-align: center; /* Center align the text */
+  font-size: 24px; /* Adjust font size */
+  color: #333; /* Set text color */
+  margin-bottom: 20px; /* Add some bottom margin for spacing */
+  text-transform: uppercase; /* Convert text to uppercase */
+}
+
+
+.update-device-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.update-device-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.update-device-form input,
+.update-device-form select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.update-device-form .button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.update-device-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.update-device-form button.delete-button {
+  background-color: #dc3545;
+}
+
+.update-device-form button:hover {
+  background-color: #0056b3;
+}
+
+.update-device-form button.delete-button:hover {
+  background-color: #c82333;
+}
+
+.delete-button {
+  background-color: #dc3545; /* Red color for delete button */
+  color: white; /* Text color */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 10px 20px; /* Padding */
+  cursor: pointer; /* Cursor style */
+}
+
+.delete-button:hover {
+  background-color: #c82333; /* Darker red color on hover */
+}
+
+.update-device-form h1 {
+  text-align: center; /* Center align the title */
+}
