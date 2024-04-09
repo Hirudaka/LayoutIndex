@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../css/addDevice.css';
 
 function DeviceAdd() {
   const [serialNumber, setSerialNumber] = useState('');
@@ -25,8 +26,8 @@ function DeviceAdd() {
 
   return (
     <div>
-      <h1>Add Device</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 className="update-device-title">Add Device</h1>
+      <form className="add-device-form" onSubmit={handleSubmit}>
         <div>
           <label>Serial Number:</label>
           <input type="text" value={serialNumber} onChange={(e) => setSerialNumber(e.target.value)} required />
@@ -41,7 +42,7 @@ function DeviceAdd() {
           </select>
         </div>
         <div>
-          <label>Image:</label>
+          <label>Image URL:</label>
           <input type="text" value={image} onChange={(e) => setImage(e.target.value)} required />
         </div>
         <div>
