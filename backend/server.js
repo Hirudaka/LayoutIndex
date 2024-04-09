@@ -30,8 +30,6 @@ app.use((req, res, next) => {
 app.use("/locations",locationRoutes);
 app.use("/devices",deviceRoutes);
 
-
-//port
 const port = process.env.PORT || 8080;
 
 //listener

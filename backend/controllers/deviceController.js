@@ -1,6 +1,5 @@
 const Device = require('../models/deviceModel');
 
-// POST method to create a new device
 async function createDevice(req, res) {
   try {
     const { serialNumber, type, image, status } = req.body;
@@ -13,7 +12,7 @@ async function createDevice(req, res) {
   }
 }
 
-// GET method to get all devices
+
 async function getAllDevices(req, res) {
   try {
     const devices = await Device.find();
@@ -24,7 +23,6 @@ async function getAllDevices(req, res) {
   }
 }
 
-// GET method to get a specific device by ID
 async function getDeviceById(req, res) {
   try {
     const device = await Device.findById(req.params.id);
@@ -38,7 +36,6 @@ async function getDeviceById(req, res) {
   }
 }
 
-// PUT method to update a device by ID
 async function updateDeviceById(req, res) {
   try {
     const updatedDevice = await Device.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -52,7 +49,6 @@ async function updateDeviceById(req, res) {
   }
 }
 
-// DELETE method to delete a device by ID
 async function deleteDeviceById(req, res) {
   try {
     const deletedDevice = await Device.findByIdAndDelete(req.params.id);
