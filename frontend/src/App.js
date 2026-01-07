@@ -11,6 +11,7 @@ import UpdateLoaction from "./pages/LocationUpdate";
 import AllLocation from "./pages/listLocation";
 
 function App() {
+  
   return (
     <Router>
       <Routes>
