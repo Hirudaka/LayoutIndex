@@ -7,6 +7,7 @@ const deviceSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+
   type: {
     type: String,
     enum: ['pos', 'kiosk', 'signage'],
