@@ -1,6 +1,7 @@
 const Device = require('../models/deviceModel');
 
 async function createDevice(req, res) {
+  
   try {
     const { serialNumber, type, image, status } = req.body;
     const newDevice = new Device({ serialNumber, type, image, status });
