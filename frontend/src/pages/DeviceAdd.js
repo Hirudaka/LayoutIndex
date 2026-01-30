@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../css/addDevice.css';
 
+
 function DeviceAdd() {
   const [serialNumber, setSerialNumber] = useState('');
   const [type, setType] = useState('');
