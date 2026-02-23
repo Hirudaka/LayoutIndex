@@ -3,7 +3,6 @@ const Device = require('../models/deviceModel');
 
 const createLocation = async (req, res) => {
   const { name, address, phone, devices } = req.body;
-  
 
   try {
     if (!name || !address || !phone || !devices || !Array.isArray(devices)) {
