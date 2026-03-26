@@ -1,6 +1,5 @@
 const Device = require('../models/deviceModel');
 
-
 async function createDevice(req, res) {
   
   try {
