@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
+
 import AddDevice from "./pages/DeviceAdd";
 import DeviceList from "./pages/DeviceList";
 import DeviceUpdate from "./pages/DeviceUpdate";
